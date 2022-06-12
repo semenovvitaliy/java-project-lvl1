@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id 'checkstyle'
 }
 
 group 'hexlet.code'
@@ -23,9 +24,9 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 }
 
-run {
-    standartInput = System.io
-}
+ run {
+    standardInput(System.in)
+ }
 
 test {
     useJUnitPlatform()
