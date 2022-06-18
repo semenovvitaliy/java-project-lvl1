@@ -11,6 +11,7 @@ public class App {
         System.out.println("2 - Even");
         System.out.println("3 - Calc");
         System.out.println("4 - GCD");
+        System.out.println("5 - Progression");
         System.out.println("0 - Exit");
         System.out.print("Your choice: ");
         Scanner in = new Scanner(System.in);
@@ -28,6 +29,8 @@ public class App {
             case 4:
                 App.GCD();
                 break;
+            case 5:
+                App.progression();
         }
     }
 
@@ -87,4 +90,29 @@ public class App {
         }
         Engine.playGame(new String[][] {questions, answers}, descriptionGame);
     }
+
+    public static void progression() {
+        String descriptionGame = "What number is missing in the progression?";
+        String[] questions = new String[Engine.ROUNDS];
+        String[] answers = new String[Engine.ROUNDS];
+        for (int i = 0; i < Engine.ROUNDS; i++) {
+            int progressionLength = (int)(Math.random() * 7) + 5;
+            int firstElement = (int)(Math.random() * 8) + 2;
+            int progressionStep = (int)(Math.random() * 4) + 2;
+            int[] progressionArray = new int[progressionLength];
+            int hiddenElement = (int)(Math.random() * progressionLength);
+            questions[i] = "";
+            for (int j = 0; j < progressionArray.length; j++) {
+                progressionArray[j] = firstElement + progressionStep * j;
+                if (j != hiddenElement) {
+                    questions[i] += (progressionArray[j] + " ");
+                } else {
+                    questions[i] += ".. ";
+                }
+            }
+            answers[i] = String.valueOf(progressionArray[hiddenElement]);
+        }
+        Engine.playGame(new String[][] {questions, answers}, descriptionGame);
+    }
+
 }
