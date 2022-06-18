@@ -3,70 +3,66 @@ package hexlet.code;
 import java.sql.SQLOutput;
 import java.util.Locale;
 import java.util.Scanner;
-import java.util.Date;
 public class App {
 
     public static void main(String[] args) {
-        int num;
-        String playerName;
-        do {
-            System.out.println("Please enter the game number and press Enter.");
-            System.out.println("1 - Greet");
-            System.out.println("2 - Parity game");
-            System.out.println("0 - Exit");
-            System.out.print("Your choice: ");
-            Scanner in = new Scanner(System.in);
-            num = in.nextInt();
-            switch (num) {
-                case 1:
-                    playerName = App.cli();
-                    break;
-                case 2:
-                    App.parityTestGame();
-                    break;
-            }
-        } while (num != 0);
-    }
-
-    public static String cli() {
-        System.out.println("Welcome to the Brain Games!");
+        System.out.println("Please enter the game number and press Enter.");
+        System.out.println("1 - Greet");
+        System.out.println("2 - Even");
+        System.out.println("3 - Calc");
+        System.out.println("0 - Exit");
+        System.out.print("Your choice: ");
         Scanner in = new Scanner(System.in);
-        System.out.print("May I have your name? ");
-        String str = in.nextLine();
-        System.out.println("Hello, " + str + "!");
-        return str;
+        int select = in.nextInt();
+        switch (select) {
+            case 1:
+                Cli.cli();
+                break;
+            case 2:
+                App.parityTestGame();
+                break;
+            case 3:
+                App.calcGame();
+                break;
+            }
     }
 
     public static void parityTestGame() {
-        String playerName = App.cli();
-        int attempt = 1;
-        boolean userNotLose = true;
-        Scanner in = new Scanner(System.in);
-        String userAnswer = "";
-        Date date = new Date();
-        int num = (int)date.getTime() % 100;
-        do {
-            num = num * 1247 % 98 + 1;
-            System.out.println("Answer 'yes' if number even otherwise answer 'no'.");
-            System.out.println("Question: " + num);
-            System.out.print("Your answer: ");
-            userAnswer = in.nextLine();
-            if ((userAnswer.toLowerCase().equals("yes") && num % 2 == 0) || (userAnswer.toLowerCase().equals("no") && num % 2 == 1)) {
-                attempt++;
-                System.out.println("Correct!");
-            } else {
-                userNotLose = false;
-                System.out.print("'" + userAnswer + "' is wrong answer ;(. Correct answer was '");
-                if (num % 2 == 0) {
-                    System.out.println("yes'");
-                } else {
-                    System.out.println("no'");
-                }
-                System.out.println("Let's try again," + playerName + "!");
-            }
-        } while (attempt <= 3 && userNotLose);
-        if (userNotLose) {
-            System.out.println("Congratulations, " + playerName + "!");
+        String descriptionGame = "Answer 'yes' if number even otherwise answer 'no'.";
+        String[] questions = new String[Engine.ROUNDS];
+        String[] answers = new String[Engine.ROUNDS];
+        for (int i=0; i < Engine.ROUNDS; i++) {
+            int num = (int)(Math.random() * 100);
+            questions[i] = String.valueOf(num);
+            answers[i] = num % 2 == 0 ? "yes" : "no";
         }
+        Engine.playGame(new String[][] {questions, answers}, descriptionGame);
     }
+
+    public static void calcGame() {
+        String descriptionGame = "What is the result of the expression?";
+        char[] operators = {'+', '-', '*'};
+        String[] questions = new String[Engine.ROUNDS];
+        String[] answers = new String[Engine.ROUNDS];
+        for (int i = 0; i < Engine.ROUNDS; i++) {
+            int a = (int)(Math.random() * 100);
+            int b = (int)(Math.random() * 100);
+            char ch = operators[(int)(Math.random() * 3)];
+            int result = 0;
+            switch (ch) {
+                case '+':
+                    result = a + b;
+                    break;
+                case '-':
+                    result = a - b;
+                    break;
+                case '*':
+                    result = a * b;
+            }
+            questions[i] = a + " " + ch + " " + b + " ";
+            answers[i] = String.valueOf(result);
+        }
+        Engine.playGame(new String[][] {questions, answers}, descriptionGame);
+    }
+
 }
