@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.37">
+<file name="/home/uzver/java-project-lvl1/app/app/src/main/java/hexlet/code/App.java">
+</file>
+<file name="/home/uzver/java-project-lvl1/app/app/src/main/java/hexlet/code/Cli.java">
+</file>
+<file name="/home/uzver/java-project-lvl1/app/app/src/main/java/hexlet/code/Engine.java">
+</file>
+<file name="/home/uzver/java-project-lvl1/app/app/src/main/java/hexlet/code/games/CalcGames.java">
+</file>
+<file name="/home/uzver/java-project-lvl1/app/app/src/main/java/hexlet/code/games/Gcd.java">
+</file>
+<file name="/home/uzver/java-project-lvl1/app/app/src/main/java/hexlet/code/games/ParityTestGame.java">
+</file>
+<file name="/home/uzver/java-project-lvl1/app/app/src/main/java/hexlet/code/games/Prime.java">
+</file>
+<file name="/home/uzver/java-project-lvl1/app/app/src/main/java/hexlet/code/games/Progression.java">
+</file>
+</checkstyle>
