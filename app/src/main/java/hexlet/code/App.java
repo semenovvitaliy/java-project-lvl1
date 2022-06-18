@@ -10,6 +10,7 @@ public class App {
         System.out.println("1 - Greet");
         System.out.println("2 - Even");
         System.out.println("3 - Calc");
+        System.out.println("4 - GCD");
         System.out.println("0 - Exit");
         System.out.print("Your choice: ");
         Scanner in = new Scanner(System.in);
@@ -24,7 +25,10 @@ public class App {
             case 3:
                 App.calcGame();
                 break;
-            }
+            case 4:
+                App.GCD();
+                break;
+        }
     }
 
     public static void parityTestGame() {
@@ -65,4 +69,22 @@ public class App {
         Engine.playGame(new String[][] {questions, answers}, descriptionGame);
     }
 
+    public static void GCD() {
+        String descriptionGame = "Find the greatest common divisor of given numbers.";
+        String[] questions = new String[Engine.ROUNDS];
+        String[] answers = new String[Engine.ROUNDS];
+        for (int i = 0; i < Engine.ROUNDS; i++) {
+            int a = (int)(Math.random() * 100);
+            int b = (int)(Math.random() * 100);
+            int result = 1;
+            for (int j = 2; j <= Math.min(a, b); j++) {
+                if (a % j == 0 && b % j == 0) {
+                    result = j;
+                }
+            }
+            questions[i] = a + " " + b;
+            answers[i] = String.valueOf(result);
+        }
+        Engine.playGame(new String[][] {questions, answers}, descriptionGame);
+    }
 }
