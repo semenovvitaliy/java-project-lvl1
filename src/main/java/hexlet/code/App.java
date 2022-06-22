@@ -1,14 +1,13 @@
 package hexlet.code;
 
-import hexlet.code.games.CalcGames;
+import hexlet.code.games.CalcGame;
 import hexlet.code.games.ParityTestGame;
-import hexlet.code.games.Gcd;
-import hexlet.code.games.Progression;
-import hexlet.code.games.Prime;
+import hexlet.code.games.GcdGame;
+import hexlet.code.games.ProgressionGame;
+import hexlet.code.games.PrimeGame;
 
 import java.util.Scanner;
 public class App {
-    public static final int MAXNUMBER = 100;
     public static void main(String[] args) {
         System.out.println("Please enter the game number and press Enter.");
         System.out.println("1 - Greet");
@@ -22,14 +21,15 @@ public class App {
         Scanner in = new Scanner(System.in);
         String select = in.nextLine();
         switch (select) {
-            case "1" -> Cli.cli();
-            case "2" -> ParityTestGame.parityTestGame();
-            case "3" -> CalcGames.calcGame();
-            case "4" -> Gcd.gcd();
-            case "5" -> Progression.progression();
-            case "6" -> Prime.prime();
-            default -> {
-            }
+            case "1" -> Cli.letsMeet();
+            case "2" -> ParityTestGame.start();
+            case "3" -> CalcGame.start();
+            case "4" -> GcdGame.start();
+            case "5" -> ProgressionGame.start();
+            case "6" -> PrimeGame.start();
+            case "0" -> System.out.println("Goodbay!");
+            default -> System.out.println("Incorrect command");
         }
+        in.close();
     }
 }

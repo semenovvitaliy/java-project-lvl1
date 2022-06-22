@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Engine {
     public static final int ROUNDS = 3;
+    public static final int MAXNUMBER = 100;
 
     public static void playGame(String[][] questionsAndAnswers, String descriptionGame) {
         System.out.println("Welcome to the Brain Games!");
@@ -27,5 +28,6 @@ public class Engine {
             }
             System.out.println("Congratulations, " + playerName + "!");
         }
+        in.close();
     }
 }
