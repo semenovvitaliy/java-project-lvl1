@@ -11,11 +11,14 @@ public class ParityTestGame {
         String[] questions = new String[Engine.ROUNDS];
         String[] answers = new String[Engine.ROUNDS];
         for (int i = 0; i < Engine.ROUNDS; i++) {
-            int num = Utils.getRandom(Engine.MAXNUMBER);
+            int num = Utils.getRandom(1, Engine.MAXNUMBER);
             questions[i] = String.valueOf(num);
-            answers[i] = num % 2 == 0 ? "yes" : "no";
+            answers[i] = isParity(num) ? "yes" : "no";
         }
         Engine.playGame(new String[][] {questions, answers}, DESCRIPTION_GAME);
     }
 
+    public static boolean isParity(int number) {
+        return number % 2 == 0;
+    }
 }

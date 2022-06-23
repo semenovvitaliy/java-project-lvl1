@@ -11,9 +11,9 @@ public class CalcGame {
         String[] questions = new String[Engine.ROUNDS];
         String[] answers = new String[Engine.ROUNDS];
         for (int i = 0; i < Engine.ROUNDS; i++) {
-            int a = Utils.getRandom(Engine.MAXNUMBER);
-            int b = Utils.getRandom(Engine.MAXNUMBER);
-            char ch = OPERATORS[Utils.getRandom(OPERATORS.length)];
+            int a = Utils.getRandom(1, Engine.MAXNUMBER);
+            int b = Utils.getRandom(1, Engine.MAXNUMBER);
+            char ch = OPERATORS[Utils.getRandom(0, OPERATORS.length)];
             int result = calculate(a, b, ch);
             questions[i] = a + " " + ch + " " + b + " ";
             answers[i] = String.valueOf(result);

@@ -11,7 +11,7 @@ public class PrimeGame {
         String[] questions = new String[Engine.ROUNDS];
         String[] answers = new String[Engine.ROUNDS];
         for (int i = 0; i < Engine.ROUNDS; i++) {
-            int number = Utils.getRandom(Engine.MAXNUMBER);
+            int number = Utils.getRandom(1, Engine.MAXNUMBER);
             boolean isPrime = checkPrime(number);
             questions[i] = String.valueOf(number);
             answers[i] = isPrime ? "yes" : "no";
@@ -19,6 +19,9 @@ public class PrimeGame {
         Engine.playGame(new String[][] {questions, answers}, DESCRIPTION_GAME);
     }
     public static boolean checkPrime(int number) {
+        if (number < 2) {
+            return false;
+        }
         for (int j = 2; j < number / 2; j++) {
             if (number % j == 0) {
                 return false;

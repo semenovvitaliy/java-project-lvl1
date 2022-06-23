@@ -21,7 +21,7 @@ public class App {
         Scanner in = new Scanner(System.in);
         String select = in.nextLine();
         switch (select) {
-            case "1" -> Cli.letsMeet();
+            case "1" -> Cli.greeting();
             case "2" -> ParityTestGame.start();
             case "3" -> CalcGame.start();
             case "4" -> GcdGame.start();

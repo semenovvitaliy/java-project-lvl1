@@ -8,15 +8,18 @@ public class ProgressionGame {
     static final String DESCRIPTION_GAME = "What number is missing in the progression?";
     static final int MIN_PROGRESSIIO_LENGTH = 5;
     static final int MIN_ELEMENT_SIZE = 2;
-    static final int MAX_SIZE_ELEMENT_INCREMENT = 4;
-    static final int MAX_DELTA_PROGRESSION_LENGTH = 7;
+    static final int MAX_SIZE_ELEMENT_INCREMENT = 6;
+    static final int MAX_PROGRESSION_LENGTH = 12;
 
     public static void start() {
         String[] questions = new String[Engine.ROUNDS];
         String[] answers = new String[Engine.ROUNDS];
         for (int i = 0; i < Engine.ROUNDS; i++) {
-            int[] progressionArray = getProgression();
-            int hiddenElement = Utils.getRandom(progressionArray.length);
+            int progressionLength = Utils.getRandom(MIN_PROGRESSIIO_LENGTH, MAX_PROGRESSION_LENGTH);
+            int firstElement = Utils.getRandom(MIN_ELEMENT_SIZE, MAX_SIZE_ELEMENT_INCREMENT);
+            int progressionStep = Utils.getRandom(MIN_ELEMENT_SIZE, MAX_SIZE_ELEMENT_INCREMENT);
+            int[] progressionArray = getProgression(firstElement, progressionStep, progressionLength);
+            int hiddenElement = Utils.getRandom(0, progressionArray.length);
             questions[i] = "";
             for (int j = 0; j < progressionArray.length; j++) {
                 if (j != hiddenElement) {
@@ -30,10 +33,7 @@ public class ProgressionGame {
         Engine.playGame(new String[][] {questions, answers}, DESCRIPTION_GAME);
     }
 
-    public static int[] getProgression() {
-        int progressionLength = Utils.getRandom(MAX_DELTA_PROGRESSION_LENGTH) + MIN_PROGRESSIIO_LENGTH;
-        int firstElement = Utils.getRandom(MAX_SIZE_ELEMENT_INCREMENT) + MIN_ELEMENT_SIZE;
-        int progressionStep = Utils.getRandom(MAX_SIZE_ELEMENT_INCREMENT) + MIN_ELEMENT_SIZE;
+    public static int[] getProgression(int firstElement, int progressionStep, int progressionLength) {
         int[] progressionArray = new int[progressionLength];
         for (int j = 0; j < progressionArray.length; j++) {
             progressionArray[j] = firstElement + progressionStep * j;

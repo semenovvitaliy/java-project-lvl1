@@ -11,8 +11,8 @@ public class GcdGame {
         String[] questions = new String[Engine.ROUNDS];
         String[] answers = new String[Engine.ROUNDS];
         for (int i = 0; i < Engine.ROUNDS; i++) {
-            int a = Utils.getRandom(Engine.MAXNUMBER);
-            int b = Utils.getRandom(Engine.MAXNUMBER);
+            int a = Utils.getRandom(1, Engine.MAXNUMBER);
+            int b = Utils.getRandom(1, Engine.MAXNUMBER);
             int result = getGcd(a, b);
             questions[i] = a + " " + b;
             answers[i] = String.valueOf(result);
