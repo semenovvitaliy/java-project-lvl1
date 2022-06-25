@@ -12,13 +12,12 @@ public class PrimeGame {
         String[] answers = new String[Engine.ROUNDS];
         for (int i = 0; i < Engine.ROUNDS; i++) {
             int number = Utils.getRandom(1, Engine.MAXNUMBER);
-            boolean isPrime = checkPrime(number);
             questions[i] = String.valueOf(number);
-            answers[i] = isPrime ? "yes" : "no";
+            answers[i] = isPrime(number) ? "yes" : "no";
         }
         Engine.playGame(new String[][] {questions, answers}, DESCRIPTION_GAME);
     }
-    public static boolean checkPrime(int number) {
+    public static boolean isPrime(int number) {
         if (number < 2) {
             return false;
         }
